@@ -1,16 +1,24 @@
-# This is a sample Python script.
+import random
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+class NumberEncryptor:
+    def __init__(self):
+        self.encrypted_number = None
 
+    def encrypt(self, number):
+        self.encrypted_number = number
+        self._perform_random_operation()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    def decrypt(self):
+        self._perform_random_operation(inverse=True)
+        return self.encrypted_number
 
+    def _perform_random_operation(self, inverse=False):
+        operation = random.choice(['add', 'subtract', 'multiply'])
+        operand = random.randint(1, 10)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        if operation == 'add':
+            self.encrypted_number += operand if not inverse else -operand
+        elif operation == 'subtract':
+            self.encrypted_number -= operand if not inverse else -operand
+        elif operation == 'multiply':
+            self.encrypted_number *= operand if not inverse else 1/operand
